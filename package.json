@@ -1,0 +1,51 @@
+{
+    "name": "conf-libpcre-actual",
+    "exportedEnvVars": {
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.0.0"
+        },
+        "conf_libpcre_enable": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "enable"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        },
+        "conf_libpcre_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.0.0"
+        },
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "conf_libpcre_installed": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "true"
+        }
+    },
+    "version": "1.0.0",
+    "dependencies": {
+        "substs": "https://github.com/yunxing/substs.git",
+        "@opam-alpha/conf-pkg-config": "*",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && pkg-config libpcre && (opam-installer --prefix=$opam_prefix || true)"
+    },
+    "peerDependencies": {
+        "@opam-alpha/ocaml": ">= 4.2.3"
+    }
+}
